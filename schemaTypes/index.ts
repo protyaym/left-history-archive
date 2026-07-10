@@ -4,7 +4,7 @@ import movement from './movement'
 import event from './event'
 import person from './person'
 import organization from './organization'
-import text from './ext'
+import textContent from './ext'
 import place from './place'
 import relationshipItem from './relationshipItem'
 import sourceItem from './sourceItem'
@@ -16,7 +16,7 @@ export const schemaTypes = [
   event,
   person,
   organization,
-  text,
+  textContent,
   place,
   // Objects
   relationshipItem,

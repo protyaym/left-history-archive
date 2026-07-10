@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'text',
-  title: 'Text',
+  name: 'textContent',
+  title: 'Text Content',
   type: 'document',
   fields: [
     defineField({name: 'title', title: 'Title', type: 'string', validation: (Rule) => Rule.required()}),
