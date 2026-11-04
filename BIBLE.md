@@ -1,6 +1,6 @@
 # Archive Bible (v1, 04/11/2026)
 
-Read with `docs/BRIEF.md`. v1 folds in the brief answers; items still marked **[OPEN]** need a decision.
+Read with `BRIEF.md`. v1 folds in the brief answers; items still marked **[OPEN]** need a decision.
 
 This is the rulebook every entry, screen and contribution is checked against. Rules are numbered so a review can say "breaks E3" instead of re-arguing the point. Where a rule is a house choice rather than a principle, it says so. Items marked **[OPEN]** wait on answers to the brief.
 
@@ -14,7 +14,7 @@ The archive takes a side. It is written from the left, for the people whose stru
 
 **S1a. Editorial line.** Interpretation follows the editorial line set by the maintainer. On minor disagreements with other left parties the archive is non-sectarian: it states each party's position and cites it, without ruling. The first test is the founding date (Tashkent 1920 or Kanpur 1925), already published in the backend without sources.
 
-**S1b. Living lists.** "Minor disagreements" and excluded sources are not written up front. Each is logged the first time it comes up, with the date, the entry that raised it and the reason, in `docs/editorial-log.md`. The log is the precedent for the next case.
+**S1b. Living lists.** "Minor disagreements" and excluded sources are not written up front. Each is logged the first time it comes up, with the date, the entry that raised it and the reason, in `editorial-log.md`. The log is the precedent for the next case.
 
 **S2. History from below is the default.** The primary subject of every movement entry is the people who acted: sharecroppers, labourers, Adivasi communities, women's corps. Leaders and parties appear as participants within that, not as the movement's authors.
 

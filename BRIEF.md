@@ -43,4 +43,4 @@ Partition as a standalone chapter, physical exhibition, contributor accounts for
 
 ## Open decisions
 
-None at brief level. Case-by-case calls go in `docs/editorial-log.md`.
+None at brief level. Case-by-case calls go in `editorial-log.md`.
