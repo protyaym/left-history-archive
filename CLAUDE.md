@@ -75,14 +75,15 @@ Last updated: 17/11/2026.
 
 Stage 0 of `docs/PLAN.md` (foundations) is in progress.
 
-- [x] Three repos merged into this one with their history (17/11/2026). Local only so far.
+- [x] Three repos merged into this one with their history (17/11/2026).
+- [x] Pushed to https://github.com/protyaym/left-history-archive (17/11/2026).
 - [x] `CLAUDE.md`, `docs/HOW-IT-WORKS.md`, status page, `netlify.toml` and the sync workflow written.
 - [x] Site rebuilt around the personas (17/11/2026): list-first home with search, new entry page, map on its own page, making-of page. This is part of Stage 3, done early. What it did not reach is listed on `site/making.html` under "What design alone cannot fix".
 - [ ] Install Node LTS on the maintainer's machine. Without it the Studio, sync and validator cannot run locally. The moved scripts in `tools/` and the workflow have not been run since the merge.
-- [ ] Create the `left-history-archive` repository on GitHub and push. Then archive the three old repos.
+- [ ] Archive (do not delete) the three old repos on GitHub: `archive-starter`, `left-history-backend`, `left-history-editorial`. Their full history is in this repo; checked 17/11/2026 that none had newer commits.
 - [ ] Connect Netlify to the repository (it reads `netlify.toml`).
 - [ ] Deploy the Studio (`cd studio && npx sanity deploy`).
-- [ ] Fill in the three addresses in `site/config/project.json` so the status page links work.
+- [ ] Fill in `studio_url` and `site_url` in `site/config/project.json` once they exist (`repo_url` is done).
 - [ ] Rewrite `site/README.md` (it still describes hand-editing JSON) and add a licence.
 - [ ] Set up a monthly `sanity dataset export` backup.
 
