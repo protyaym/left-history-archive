@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The making of this site — Left history archive</title>
+<meta name="description" content="How the Left history archive was built: the timeline, who it is for, their journeys through the site, and what changed because of them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">Left history archive</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="index.html">Browse</a>
+    <a href="map.html">Map and timeline</a>
+    <a href="status.html">How it works</a>
+  </nav>
+</header>
+
+<main class="making">
+
+  <h1>The making of this site</h1>
+  <p class="intro">The <a href="status.html">status page</a> says how the archive works today. This page says how it got here: what was built when, who it is built for, and what their path through the site changed.</p>
+
+  <section>
+    <h2>What was built, and when</h2>
+    <ol class="build-log">
+      <li><span class="when">11/07/2026</span><span>The pilot. Tebhaga and Nachole as pins on a map with a timeline, filters for phones and a page for each entry. The content was typed by hand into JSON files.</span></li>
+      <li><span class="when">11/07 to 14/08/2026</span><span>A Sanity Studio was set up as the place to edit content, and the pilot's entries were imported into it.</span></li>
+      <li><span class="when">04/11/2026</span><span>The site began reading a snapshot pulled from Sanity. The design brief and the Bible, the numbered rules for every entry and screen, were written.</span></li>
+      <li><span class="when">17/11/2026</span><span>The three code repositories were merged into one. The status page was added. The site was rebuilt around the four readers described below: a searchable list first, the map on request, and an entry page that explains itself.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Who it is for</h2>
+    <p>Four people, in the order the brief ranks them. <b>They are invented.</b> They are working assumptions drawn from the brief and the Bible, not findings from interviews, and they should be replaced by what real readers say once the site has been tested with a handful of people.</p>
+    <div class="personas" id="personas"></div>
+    <p class="note">A fifth person uses the site too: the editor. Today that is the maintainer; later, verified editors. Their page is the <a href="status.html">status page</a>.</p>
+  </section>
+
+  <section>
+    <h2>Their journeys</h2>
+    <p>Each journey follows one person through five stages. Under each stage: what the site did <span class="inline-tag">before</span> 17/11/2026, what it does <span class="inline-tag now">now</span>, and what is <span class="inline-tag open">still open</span>.</p>
+    <div id="journeys"></div>
+  </section>
+
+  <section>
+    <h2>What the journeys showed</h2>
+    <ol class="findings">
+      <li><b>The entry page is the front door.</b> Three of the four people land on an entry, not on the home page. So each entry now says what it is, when and where, and how well it is sourced, before anything else.</li>
+      <li><b>The home page asked people to decode a map.</b> Dots with no labels help someone who already knows the story. The home page is now a sentence, a search box and a list. The map is one tap away for those who want it.</li>
+      <li><b>Most of the archive could not be reached.</b> Only movements and events with a pin appeared on the home page, so people, organisations, places and texts were hidden. Every entry is now in the list and in search.</li>
+      <li><b>Trust has to be visible where the claim is.</b> A reader should not need the status page to learn that an entry rests on one source. Every entry carries that line itself, and unverified entries say so in the list.</li>
+      <li><b>The site spoke its own internal language.</b> Codes such as <code>pe_ila_mitra</code>, the word "entity" and labels such as <code>named_in</code> have been replaced by names and plain words.</li>
+      <li><b>Doubt is not an error.</b> Open questions and disagreements were shown in red, like faults. They are now dashed and hatched boxes. Red is kept for the movement itself (Bible V1).</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>What design alone cannot fix</h2>
+    <p>The journeys also end in places a redesign cannot reach. These are the open items, with the work each one needs.</p>
+    <div class="two-col">
+      <div>
+        <h3>Needs writing and editing</h3>
+        <ul>
+          <li><b>Bangla.</b> No entry has Bangla text, and the first reader reads Bangla first.</li>
+          <li><b>Sources.</b> 35 of 82 entries have no source the archive accepts.</li>
+          <li><b>"Since then".</b> Nothing connects a movement to the present (Bible H2).</li>
+          <li><b>Ordinary participants and communities.</b> Mostly leaders are named (Bible P1, P2).</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Needs building</h3>
+        <ul>
+          <li><b>Link previews and search engines.</b> Entries need to be generated as real pages (plan D9).</li>
+          <li><b>A correction form</b> that needs no account (Bible C2, P5).</li>
+          <li><b>Page numbers and disputed claims</b> shown side by side (plan D7, Bible E2).</li>
+          <li><b>The map:</b> no modern borders before 1947, shapes as well as colours, a region filter that reads then-and-now districts (Bible G1, G2, V2).</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">The order of this work is in <code>docs/PLAN.md</code>.</p>
+  </section>
+
+  <section>
+    <h2>What it is made with</h2>
+    <p>Plain HTML, CSS and JavaScript with no framework. Leaflet draws the map on OpenStreetMap tiles. Content is edited in Sanity and copied into the site as JSON files. The fonts are Fraunces and IBM Plex. Every tool in the chain is free to use. How the pieces connect is on the <a href="status.html">status page</a>.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p><a href="index.html">Browse the archive</a> · <a href="status.html">How this archive works</a></p>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/making.js"></script>
+</body>
+</html>

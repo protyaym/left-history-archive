@@ -7,19 +7,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/pages.css">
 <link rel="stylesheet" href="css/status.css">
 </head>
 <body>
 
-<div class="topbar">
-  <h1><a href="index.html" class="home-link">Left history archive</a></h1>
-  <span class="catalog-id">status and how it works</span>
-</div>
+<header class="site-header">
+  <a class="brand" href="index.html">Left history archive</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="index.html">Browse</a>
+    <a href="map.html">Map and timeline</a>
+    <a href="status.html" aria-current="page">How it works</a>
+  </nav>
+</header>
 
 <main class="status-page">
 
   <header class="status-intro">
-    <h2>How this archive works</h2>
+    <h1>How this archive works</h1>
     <p>One page for the maintainer, for new editors and for anyone who wants to check the work: where the content lives, how an edit reaches the site, and how well sourced the entries are today.</p>
     <nav class="status-nav" aria-label="On this page">
       <a href="#health">Health</a>
@@ -28,6 +33,7 @@
       <a href="#public">Is Sanity public?</a>
       <a href="#worklist">Worklist</a>
       <a href="#files">Where things live</a>
+      <a href="making.html">The making of this site →</a>
     </nav>
   </header>
 
@@ -123,6 +129,10 @@
   </section>
 
 </main>
+
+<footer class="site-footer">
+  <p><a href="index.html">Browse the archive</a> · <a href="making.html">The making of this site</a></p>
+</footer>
 
 <script src="js/data.js"></script>
 <script src="js/status.js"></script>

@@ -5,16 +5,6 @@
 //   config/project.json    the Studio, GitHub and site addresses to link to
 // Nothing on this page talks to Sanity.
 
-const KIND_LABEL = {
-  movement: "Movements",
-  event: "Events",
-  person: "People",
-  organization: "Organisations",
-  text: "Texts",
-  place: "Places",
-};
-const KIND_ORDER = ["movement", "event", "person", "organization", "text", "place"];
-
 const LEVELS = [
   { key: "solid", label: "Solid", fill: "fill-solid" },
   { key: "thin", label: "Thin", fill: "fill-thin" },
@@ -34,33 +24,11 @@ const PROBLEMS = [
   { key: "id", label: "Random id, needs a prefixed one", blocking: false, test: (e) => !/^(mv|ev|pe|org|tx|pl)_/.test(e.id) },
 ];
 
-function esc(value) {
-  return String(value == null ? "" : value).replace(/[&<>"']/g, (c) => (
-    { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
-  ));
-}
-
-async function getJson(path, fallback) {
-  try {
-    const response = await fetch(path);
-    if (!response.ok) throw new Error(response.status);
-    return await response.json();
-  } catch (e) {
-    return fallback;
-  }
-}
-
-function isBanned(source, blocklist) {
-  const haystack = `${source.citation || ""} ${source.url || ""}`.toLowerCase();
-  return blocklist.patterns.some((p) => haystack.includes(p.match));
-}
-
-function annotate(entity, blocklist) {
-  const sources = entity.sources || [];
-  const blocked = sources.filter((s) => isBanned(s, blocklist)).length;
-  const admissible = sources.length - blocked;
-  entity._blocked = blocked;
-  entity._level = sources.length === 0 ? "none" : admissible === 0 ? "banned" : admissible === 1 ? "thin" : "solid";
+// esc(), getJson(), sourcing() and the kind names come from js/data.js.
+function annotate(entity) {
+  const s = sourcing(entity);
+  entity._blocked = s.banned;
+  entity._level = s.level;
   const text = [entity.title, entity.name, entity.summary_card, entity.full_entry].join(" ");
   entity._bangla = /[ঀ-৿]/.test(text);
   entity._problems = PROBLEMS.filter((p) => p.test(entity));
@@ -114,7 +82,7 @@ function renderSourcingBar(entities) {
 function renderTypeTable(entities) {
   const rows = KIND_ORDER.map((kind) => {
     const list = entities.filter((e) => e.type === kind);
-    return { label: KIND_LABEL[kind], list };
+    return { label: KIND_PLURAL[kind], list };
   }).filter((row) => row.list.length > 0);
   rows.push({ label: "All", list: entities });
 
@@ -252,8 +220,8 @@ function renderWorklist(entities, project) {
       : list.map((e) => `
         <li>
           <span>
-            <a class="entry-name" href="entity.html?id=${encodeURIComponent(e.id)}">${esc(entityName(e) || e.id)}</a>
-            <span class="kind">${esc(e.type)}</span>
+            <a class="entry-name" href="${entityUrl(e.id)}">${esc(entityName(e) || "Untitled entry")}</a>
+            <span class="kind">${esc((KIND_LABEL[e.type] || e.type).toLowerCase())}</span>
           </span>
           <a class="studio-link" href="${esc(studio)}/intent/edit/id=${encodeURIComponent(e.id)}">Open in Studio</a>
           <span class="problems">${e._problems.map((p) => `<span class="chip${p.blocking ? " blocking" : ""}">${esc(p.label)}</span>`).join("")}</span>
@@ -265,15 +233,14 @@ function renderWorklist(entities, project) {
 }
 
 async function main() {
-  const [, blocklist, project, sync] = await Promise.all([
+  const [, project, sync] = await Promise.all([
     loadData(),
-    getJson("config/blocklist.json", { patterns: [] }),
     getJson("config/project.json", {}),
     getJson("data/sync.json", null),
   ]);
 
   const entities = Object.values(allEntities);
-  entities.forEach((e) => annotate(e, blocklist));
+  entities.forEach(annotate);
 
   renderSyncLine(sync);
   renderTiles(entities);

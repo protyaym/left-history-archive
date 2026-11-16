@@ -37,29 +37,31 @@ function openCard(entity) {
   const card = document.getElementById("card");
 
   card.innerHTML = `
-    <span class="catalog-id">${entity.id}</span>
-    <h3>${entityName(entity)}</h3>
-    <div class="meta">${entityDateLabel(entity)}${entity.place ? " · " + entity.place.name : ""}</div>
     <div>${tagsHtml(entity)}</div>
-    <p>${entity.summary_card}</p>
-    <button id="toggle-entry">Open full entry</button>
+    <h3>${esc(entityName(entity))}</h3>
+    <div class="meta">${esc(entityMetaParts(entity).join(" · "))}</div>
+    <p>${esc(entity.summary_card || "")}</p>
+    <a class="card-open" href="${entityUrl(entity.id)}">Read the entry</a>
     <button id="close-card">Close</button>
-    <div class="full-entry" id="full-entry-body">
-      <p>${entity.full_entry || "Full entry not written yet."}</p>
-      <ul class="rel-list">${relationshipsHtml(entity, false)}</ul>
-      <div class="sources">${sourcesHtml(entity)}</div>
-      ${entity.editor_note ? `<p style="color:#A33B2E"><em>Editor note: ${entity.editor_note}</em></p>` : ""}
-      <a class="permalink" href="entity.html?id=${encodeURIComponent(entity.id)}">View full page &rarr;</a>
-    </div>
   `;
   card.classList.add("open");
-
-  document.getElementById("toggle-entry").onclick = (e) => {
-    const body = document.getElementById("full-entry-body");
-    body.classList.toggle("open");
-    e.target.textContent = body.classList.contains("open") ? "Hide full entry" : "Open full entry";
+  document.getElementById("close-card").onclick = () => {
+    card.classList.remove("open");
+    setUrlState({ focus: null });
   };
-  document.getElementById("close-card").onclick = () => card.classList.remove("open");
+  setUrlState({ focus: entity.id });
+}
+
+// The view and the open entry live in the URL so a link reopens the same
+// thing (Bible I4).
+function setUrlState(changes) {
+  const params = new URLSearchParams(window.location.search);
+  Object.entries(changes).forEach(([key, value]) => {
+    if (value) params.set(key, value);
+    else params.delete(key);
+  });
+  const query = params.toString();
+  window.history.replaceState(null, "", query ? `?${query}` : window.location.pathname);
 }
 
 // ---------- MAP VIEW ----------
@@ -114,7 +116,7 @@ function renderMarkers() {
         weight: 1.5,
       }).addTo(markerLayer);
 
-      marker.bindTooltip(entity.title, { direction: "top" });
+      marker.bindTooltip(entityName(entity), { direction: "top" });
       marker.on("click", () => openCard(entity));
     });
   });
@@ -208,7 +210,7 @@ function renderTimeline() {
       dot.style.left = item.x + "px";
       dot.style.top = y + "px";
       dot.style.background = markerColor(item.entity);
-      dot.title = item.entity.title;
+      dot.title = entityName(item.entity);
       dot.addEventListener("click", () => openCard(item.entity));
       container.appendChild(dot);
     });
@@ -230,6 +232,7 @@ function switchView(view) {
   } else {
     renderTimeline();
   }
+  setUrlState({ view: view === "timeline" ? "timeline" : null });
 }
 
 function currentView() {
@@ -290,6 +293,18 @@ async function main() {
   document.querySelectorAll(".view-tab").forEach((btn) => {
     btn.addEventListener("click", () => switchView(btn.dataset.view));
   });
+
+  // Reopen what the link asked for: ?view=timeline and ?focus=<entry id>.
+  const params = new URLSearchParams(window.location.search);
+  const focused = allEntities[params.get("focus")];
+  if (params.get("view") === "timeline") switchView("timeline");
+  if (focused) {
+    if (params.get("view") !== "timeline" && focused.place && focused.place.coordinates) {
+      map.setView(focused.place.coordinates, 9);
+      renderMarkers();
+    }
+    openCard(focused);
+  }
 }
 
 main();

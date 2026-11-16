@@ -129,6 +129,8 @@ Progress is tracked in `CLAUDE.md` at the repo root, under "Where the work stand
 
 ### Stage 3: bring the site up to the Bible (overlaps Stage 2)
 
+Done early, on 17/11/2026, without Eleventy: item 21 (list-first home, search, every kind reachable), the sourcing labels from item 25, and a rebuilt entry page. The personas and journeys behind those changes are in `site/config/ux.json` and shown on `site/making.html`. Items 20, 22, 23, 24 and 26, and the rest of 25, are still to do.
+
 20. Generated pages with Eleventy, one per entry per language (D9).
 21. Phone-first home: a searchable list and index of all entity types, map on request (Bible I1, I3).
 22. Region filter that reads `admin_pre1947` and `admin_post1947` (Bible G2). The current one matches the word "pakistan" in place names.

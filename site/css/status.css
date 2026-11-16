@@ -12,7 +12,7 @@
 
 .status-page a { color: var(--gold-deep); }
 
-.status-intro h2 {
+.status-intro h1 {
   font-family: var(--font-display);
   font-size: 30px;
   line-height: 1.2;
@@ -294,7 +294,7 @@
 
 @media (max-width: 720px) {
   .status-page { padding: 20px 16px 64px; }
-  .status-intro h2 { font-size: 24px; }
+  .status-intro h1 { font-size: 24px; }
   .tiles { grid-template-columns: repeat(2, 1fr); }
 
   .route { grid-template-columns: 1fr; gap: 26px; }

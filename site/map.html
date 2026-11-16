@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Map and timeline — Left history archive</title>
+<meta name="description" content="The movements and events of the Left history archive on a map and on a timeline.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">Left history archive</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="index.html">Browse</a>
+    <a href="map.html" aria-current="page">Map and timeline</a>
+    <a href="status.html">How it works</a>
+  </nav>
+</header>
+
+<div class="explorer-bar">
+  <p>Movements and events that have a known place. People, organisations and texts are in <a href="index.html">the list</a>.</p>
+  <div class="view-tabs">
+    <button class="view-tab active" data-view="map">Map</button>
+    <button class="view-tab" data-view="timeline">Timeline</button>
+  </div>
+</div>
+
+<div class="layout">
+  <aside class="ledger">
+    <div class="filter-section" id="typeSection">
+      <button class="filter-header" data-target="typePanel"><span>Kind of entry</span><span class="caret">⌄</span></button>
+      <div class="filter-panel" id="typePanel">
+        <fieldset>
+          <label><input type="checkbox" id="filter-movements" checked> Movements</label>
+          <label><input type="checkbox" id="filter-events" checked> Events</label>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="filter-section" id="yearSection">
+      <button class="filter-header" data-target="yearPanel"><span>Up to year</span><span class="caret">⌄</span></button>
+      <div class="filter-panel" id="yearPanel">
+        <fieldset>
+          <input type="range" id="decade" min="1938" max="1950" step="1" value="1950" aria-label="Show entries up to this year">
+          <div class="decade-readout" id="decade-readout">up to 1950</div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="filter-section" id="regionSection">
+      <button class="filter-header" data-target="regionPanel"><span>Region</span><span class="caret">⌄</span></button>
+      <div class="filter-panel" id="regionPanel">
+        <fieldset>
+          <select id="region" aria-label="Region">
+            <option value="all">All</option>
+            <option value="bengal_india">Bengal / West Bengal, India</option>
+            <option value="east_pakistan">East Bengal / Pakistan</option>
+          </select>
+        </fieldset>
+      </div>
+    </div>
+  </aside>
+
+  <main class="stage">
+    <div id="map"></div>
+    <div id="timeline" style="display:none"></div>
+    <div class="card" id="card"></div>
+  </main>
+</div>
+
+<footer class="site-footer">
+  <p><a href="status.html">How this archive works</a> · <a href="making.html">The making of this site</a></p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

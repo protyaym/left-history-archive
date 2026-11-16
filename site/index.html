@@ -3,69 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Left history archive — starter</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<title>Left history archive</title>
+<meta name="description" content="A public reference on the history of the communist movement in the Indian subcontinent, starting with Bengal: the Tebhaga movement and the Nachole uprising.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/pages.css">
 </head>
 <body>
 
-<div class="topbar">
-  <h1>Left history archive</h1>
-  <span class="catalog-id">pilot dataset — Tebhaga &amp; Nachole, 1938–1950</span>
-  <div class="view-tabs">
-    <button class="view-tab active" data-view="map">Map</button>
-    <button class="view-tab" data-view="timeline">Timeline</button>
-  </div>
-  <a class="status-link" href="status.html">How this works</a>
-</div>
+<header class="site-header">
+  <a class="brand" href="index.html">Left history archive</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="index.html" aria-current="page">Browse</a>
+    <a href="map.html">Map and timeline</a>
+    <a href="status.html">How it works</a>
+  </nav>
+</header>
 
-<div class="layout">
-  <aside class="ledger">
-    <div class="filter-section" id="typeSection">
-      <button class="filter-header" data-target="typePanel"><span>Entity type</span><span class="caret">⌄</span></button>
-      <div class="filter-panel" id="typePanel">
-        <fieldset>
-          <label><input type="checkbox" id="filter-movements" checked> Movements</label>
-          <label><input type="checkbox" id="filter-events" checked> Events</label>
-        </fieldset>
-      </div>
+<main class="home">
+
+  <section class="hero">
+    <h1>The history of the communist movement in the subcontinent, one entry at a time.</h1>
+    <p>It starts in Bengal, with the sharecroppers' Tebhaga movement of 1946–47 and the Nachole uprising that followed it. Every entry shows its sources and says what has not been verified yet.</p>
+  </section>
+
+  <form class="search" role="search" id="search-form">
+    <label for="q">Search for a person, a place, an event or an organisation</label>
+    <div class="search-row">
+      <input type="search" id="q" name="q" autocomplete="off" placeholder="For example: Ila Mitra, Dinajpur, Kisan Sabha">
     </div>
+  </form>
 
-    <div class="filter-section" id="yearSection">
-      <button class="filter-header" data-target="yearPanel"><span>Up to year</span><span class="caret">⌄</span></button>
-      <div class="filter-panel" id="yearPanel">
-        <fieldset>
-          <input type="range" id="decade" min="1938" max="1950" step="1" value="1950">
-          <div class="decade-readout" id="decade-readout">up to 1950</div>
-        </fieldset>
-      </div>
-    </div>
+  <section id="start-here" class="start-here">
+    <h2>Start here</h2>
+    <div class="start-cards" id="start-cards"></div>
+    <p class="quiet"><a href="map.html">See the events on a map</a> or <a href="map.html?view=timeline">on a timeline</a>.</p>
+  </section>
 
-    <div class="filter-section" id="regionSection">
-      <button class="filter-header" data-target="regionPanel"><span>Region</span><span class="caret">⌄</span></button>
-      <div class="filter-panel" id="regionPanel">
-        <fieldset>
-          <select id="region">
-            <option value="all">All</option>
-            <option value="bengal_india">Bengal / West Bengal, India</option>
-            <option value="east_pakistan">East Bengal / Pakistan</option>
-          </select>
-        </fieldset>
-      </div>
-    </div>
-  </aside>
+  <section class="browse">
+    <h2 id="browse-heading">Browse everything</h2>
+    <div class="kinds" id="kinds" role="group" aria-label="Kind of entry"></div>
+    <p class="result-line" id="result-line" aria-live="polite"></p>
+    <div id="results"></div>
+  </section>
 
-  <main class="stage">
-    <div id="map"></div>
-    <div id="timeline" style="display:none"></div>
-    <div class="card" id="card"></div>
-  </main>
-</div>
+</main>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<footer class="site-footer">
+  <p><a href="status.html">How this archive works</a> · <a href="making.html">The making of this site</a></p>
+  <p>Entries marked “not yet verified” have no source the archive accepts. They are shown so the gaps are visible, not hidden.</p>
+</footer>
+
 <script src="js/data.js"></script>
-<script src="js/app.js"></script>
+<script src="js/home.js"></script>
 </body>
 </html>

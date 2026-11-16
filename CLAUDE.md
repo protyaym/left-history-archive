@@ -17,6 +17,7 @@ The maintainer is a designer, not a full-time developer. Explain in plain langua
 | `docs/PLAN.md` | Setup decisions (D1 to D11) and the staged work in priority order |
 | `docs/HOW-IT-WORKS.md` | How an edit in Sanity reaches the public site |
 | `docs/editorial-log.md` | Case-by-case rulings on sources and disagreements |
+| `site/config/ux.json` | The four personas and their journey maps. Design changes are argued from these |
 
 When a request conflicts with the Bible or the plan, say so and name the rule (for example "breaks E3") before doing anything.
 
@@ -25,9 +26,15 @@ When a request conflicts with the Bible or the plan, say so and name the rule (f
 ```
 studio/   Sanity Studio: schema in schemaTypes/, one-off migrations in migrations/
 site/     the public website (plain HTML, CSS, JS; no build step yet)
-  data/     JSON snapshot of the Sanity content. GENERATED. Never edit by hand.
-  config/   blocklist.json (banned sources), project.json (addresses for the status page)
-  status.html  the dashboard: how it works, health numbers, worklist
+  index.html   home: search and a list of every entry       (js/home.js)
+  entity.html  one entry, at entity.html?id=...             (js/entity.js)
+  map.html     map and timeline of movements and events     (js/app.js)
+  status.html  the dashboard: how it works, health, worklist (js/status.js)
+  making.html  the making of the site: build log, personas, journeys (js/making.js)
+  js/data.js   shared by every page: loading, dates, sourcing level, kind names
+  css/         style.css (base, map), pages.css (header, home, entry, making), status.css
+  data/        JSON snapshot of the Sanity content. GENERATED. Never edit by hand.
+  config/      blocklist.json (banned sources), project.json (addresses), ux.json (personas, journeys)
 tools/    sync-from-sanity.js and validate.js (plain Node, no dependencies)
 docs/     brief, Bible, plan, how-it-works, editorial log
 .github/workflows/sync-content.yml   nightly and on-demand sync
@@ -48,6 +55,8 @@ Sanity project `p90vg6so`, dataset `production`.
 8. **Phone first** (360px wide, weak connection), laptop second. Reading text at least 14px, labels at least 12px (Bible V4, I3).
 9. **A schema change is one commit** that updates `studio/schemaTypes/`, `tools/sync-from-sanity.js`, `tools/validate.js`, the site and the docs together.
 10. **Dates are written dd/mm/yyyy** in documents. Documents use British spelling.
+11. **The interface speaks the reader's language.** No internal ids, no "entity", no raw relationship codes on screen (Bible V5). Doubt is shown with dashed outlines or hatching, never red (Bible V1).
+12. **The personas are invented**, drawn from the brief. Say so wherever they are shown, and replace them with real findings once readers have been tested.
 
 ## Running things
 
@@ -68,6 +77,7 @@ Stage 0 of `docs/PLAN.md` (foundations) is in progress.
 
 - [x] Three repos merged into this one with their history (17/11/2026). Local only so far.
 - [x] `CLAUDE.md`, `docs/HOW-IT-WORKS.md`, status page, `netlify.toml` and the sync workflow written.
+- [x] Site rebuilt around the personas (17/11/2026): list-first home with search, new entry page, map on its own page, making-of page. This is part of Stage 3, done early. What it did not reach is listed on `site/making.html` under "What design alone cannot fix".
 - [ ] Install Node LTS on the maintainer's machine. Without it the Studio, sync and validator cannot run locally. The moved scripts in `tools/` and the workflow have not been run since the merge.
 - [ ] Create the `left-history-archive` repository on GitHub and push. Then archive the three old repos.
 - [ ] Connect Netlify to the repository (it reads `netlify.toml`).
@@ -84,7 +94,9 @@ Next after Stage 0: Stage 1, starting with sources as their own document type (p
 - Three entries are published in Sanity with the `published` switch off, so they are publicly readable through the API: `pe_majumdar`, `tx_floud_report`, `tx_sen_agrarian_struggle`.
 - Entries created in the Studio get a random id instead of a prefixed one (`mv_`, `ev_`, `pe_`, `org_`, `tx_`, `pl_`). Two exist.
 - The Studio has two names for texts: the document type is `textContent`, but relationships point at `text`. The sync accepts both.
-- The region filter matches the word "pakistan" in place names (Bible G2). The basemap shows modern borders (Bible G1).
+- The region filter matches the word "pakistan" in place names (Bible G2). The basemap shows modern borders (Bible G1). Map markers still rely on colour alone (Bible V2), and on a phone the timeline's year labels collide with its dots.
+- No correction form yet (Bible C2, P5), and no licence.
+- The redesign has not been tested with any real reader.
 - Entry pages are filled in by JavaScript, so search engines and link previews see an empty page (plan D9).
 - No Bangla text exists in the data yet.
 

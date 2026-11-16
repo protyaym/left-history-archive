@@ -11,7 +11,7 @@ This repository was merged on 17/11/2026 from three: `archive-starter` (now `sit
 | `tools/` | The sync and validation scripts |
 | `docs/` | Brief, Bible (the rules), plan, how-it-works, editorial log |
 
-Start with `docs/HOW-IT-WORKS.md`, or open `site/status.html` on the running site for the same explanation with live numbers.
+Start with `docs/HOW-IT-WORKS.md`, or open `site/status.html` on the running site for the same explanation with live numbers. `site/making.html` tells how the site was built and who it is built for.
 
 To see the site on your own machine:
 

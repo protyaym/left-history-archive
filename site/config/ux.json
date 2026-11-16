@@ -1,0 +1,189 @@
+{
+  "note": "Personas and journey maps for the archive. Shown on site/making.html and used as the reference for design decisions. These are working assumptions drawn from docs/BRIEF.md and docs/BIBLE.md, not findings from interviews. The people are invented. Replace them with what real readers say once the site has been tested with five people (docs/PLAN.md).",
+  "updated": "17/11/2026",
+  "personas": [
+    {
+      "id": "reader",
+      "rank": "First priority",
+      "label": "The reader on a phone",
+      "name": "Rumana Khatun",
+      "who": "41, primary-school teacher, Chapainawabganj",
+      "quote": "I will give it one screen. If it is not clear by then, I go back to WhatsApp.",
+      "arrives": "From a WhatsApp forward about Ila Mitra on the anniversary of the Nachole uprising.",
+      "device": "A low-cost Android phone on mobile data. Reads Bangla first, English slowly.",
+      "wants": "To know what happened near her town, in about two minutes, and whether it can be trusted enough to forward.",
+      "leaves_when": "The first screen is a map, a code or a wall of English."
+    },
+    {
+      "id": "organiser",
+      "rank": "Second priority",
+      "label": "The organiser",
+      "name": "Dipankar Roy",
+      "who": "29, organiser with an agricultural workers' union, Purba Bardhaman",
+      "quote": "I need to show the line from then to now, and send a link that opens on exactly the right thing.",
+      "arrives": "On purpose, to prepare a study circle on sharecroppers' rights.",
+      "device": "His phone, and a shared laptop at the union office. Reads Bangla and English.",
+      "wants": "The sequence of a movement in order, the line from Tebhaga to today's land struggles, and links he can drop into a group chat.",
+      "leaves_when": "The story stops in 1950 with nothing connecting it to the present."
+    },
+    {
+      "id": "researcher",
+      "rank": "Third priority",
+      "label": "The student or researcher",
+      "name": "Ananya Ghosh",
+      "who": "24, MA history student, Kolkata",
+      "quote": "Show me where each claim comes from. If the source is a study-notes site, I am gone.",
+      "arrives": "From a search engine, looking for sources on women in the Tebhaga movement.",
+      "device": "A laptop, with a dozen tabs open.",
+      "wants": "Citations with page numbers, primary and secondary sources told apart, and the points on which accounts disagree.",
+      "leaves_when": "Sources are missing, vague or Wikipedia."
+    },
+    {
+      "id": "descendant",
+      "rank": "Answered before anyone else (Bible P5)",
+      "label": "The descendant",
+      "name": "Bimal Barman",
+      "who": "58, grandson of a Dinajpur sharecropper, Dakshin Dinajpur",
+      "quote": "My grandfather was there. His name is spelled wrong, and our village is not mentioned.",
+      "arrives": "His son opens an entry on his phone and hands it to him.",
+      "device": "His son's phone. Reads Bangla. Does not type in English and has never heard of GitHub.",
+      "wants": "To find his family's village and people, and to tell the archive when something about them is wrong.",
+      "leaves_when": "There is no way to say so."
+    }
+  ],
+  "stages": ["Arrive", "Get oriented", "Read", "Go further", "Act"],
+  "journeys": [
+    {
+      "persona": "reader",
+      "goal": "Understand one entry within 30 seconds of landing on it (the brief's first test of success).",
+      "steps": [
+        {
+          "does": "Taps a link to the Ila Mitra entry in a WhatsApp group.",
+          "before": "The link preview in WhatsApp was blank, because the page was filled in by a script after loading.",
+          "open": "Still blank. Fixing it needs real pages generated for each entry (plan D9)."
+        },
+        {
+          "does": "Looks for what this is, in her language.",
+          "before": "The first things on the page were a code, pe_ila_mitra, and the word \"person\". English only.",
+          "now": "The name, her role and a one-paragraph summary come first. The code is gone from the page.",
+          "open": "No Bangla yet. None of the 82 entries has Bangla text."
+        },
+        {
+          "does": "Reads the summary, perhaps the entry.",
+          "before": "The editor's note was in red and read like an error message.",
+          "now": "A line under the summary says how well the entry is sourced. Open questions sit in a calm box titled \"What we have not verified yet\"."
+        },
+        {
+          "does": "Taps one link to learn more.",
+          "before": "Links were labelled with internal terms such as \"named_in\".",
+          "now": "Connected entries are grouped as people, events, places and so on, in plain words. A movement lists what happened in order."
+        },
+        {
+          "does": "Forwards it to a cousin.",
+          "before": "She had to copy the address from the browser bar.",
+          "now": "A \"Share this entry\" button opens the phone's share sheet.",
+          "open": "The forwarded link still shows no preview."
+        }
+      ]
+    },
+    {
+      "persona": "organiser",
+      "goal": "Prepare a study circle and share exact links.",
+      "steps": [
+        {
+          "does": "Opens the home page on the union's laptop.",
+          "before": "A map with unlabelled dots and three filters. Nothing said what the site was.",
+          "now": "One sentence says what the archive is. Below it are a search box and the two movements to start with."
+        },
+        {
+          "does": "Wants Tebhaga from beginning to end.",
+          "before": "A timeline of dots at start dates. People and organisations could not be reached from the home page at all.",
+          "now": "The movement's page lists its events in date order. Each event links to the one before and the one after.",
+          "open": "On the timeline, movements are still dots, not bars showing how long they lasted (Bible G4)."
+        },
+        {
+          "does": "Reads the events one by one.",
+          "before": "Each event opened in a small card on top of the map.",
+          "now": "Each event is a full page that reads comfortably on a phone."
+        },
+        {
+          "does": "Looks for the line from Tebhaga to today.",
+          "before": "Nothing after 1950.",
+          "open": "Still nothing. The \"Since then\" sections (Bible H2) have to be written. Design cannot supply them."
+        },
+        {
+          "does": "Pastes links into the group chat.",
+          "before": "Filters and views were not in the address, so a link always opened the default map.",
+          "now": "A search, a chosen kind of entry, the timeline view and an entry opened on the map are all in the address.",
+          "open": "The map's year and region filters are not in the address yet."
+        }
+      ]
+    },
+    {
+      "persona": "researcher",
+      "goal": "Decide whether the archive can be cited, and find its sources.",
+      "steps": [
+        {
+          "does": "Searches the web for sources on women in Tebhaga.",
+          "before": "Search engines saw empty pages, so entries could not be found this way.",
+          "open": "Unchanged. Needs generated pages (plan D9)."
+        },
+        {
+          "does": "Checks whether the site is serious about evidence.",
+          "before": "A red tag reading \"contested / verify sources\" covered two different things: disagreement and thin sourcing.",
+          "now": "Every entry states its sourcing in one line: sourced, thinly sourced or not yet verified. The status page shows the totals.",
+          "open": "35 of 82 entries are not yet verified. The line makes that visible. Only editing fixes it."
+        },
+        {
+          "does": "Reads the claims.",
+          "before": "Running text with no indication of which source supports which statement.",
+          "open": "Unchanged. Needs sources as their own records with page numbers (plan D7) and disputed points stored as claims (Bible E2)."
+        },
+        {
+          "does": "Opens the source list.",
+          "before": "Fifty source links led nowhere, and study-notes sites were listed like any other source.",
+          "now": "Sources without a web address are shown as plain citations. Banned sources are labelled \"research lead only, to be replaced\".",
+          "open": "No page numbers. No record of whose voice a source is: state, party, participant, press or scholar (Bible E1)."
+        },
+        {
+          "does": "Cites the entry in a seminar paper.",
+          "before": "No stable way to cite, no licence.",
+          "now": "The share button copies the entry's address.",
+          "open": "No \"cite this entry\" line with a date, and no licence yet (Bible C4)."
+        }
+      ]
+    },
+    {
+      "persona": "descendant",
+      "goal": "Find his family's place in the record and correct it.",
+      "steps": [
+        {
+          "does": "Is handed a phone showing the Dinajpur entry.",
+          "before": "Places had bare pages, and no page listed what happened there.",
+          "now": "A place page shows what the place was called before and after 1947, and every entry connected to it."
+        },
+        {
+          "does": "Looks for his grandfather's name and village.",
+          "before": "There was no search. People could only be reached two taps deep.",
+          "now": "The home page searches every name. People and places each have a list.",
+          "open": "Search works in English spelling only."
+        },
+        {
+          "does": "Reads what the archive says about the movement in his district.",
+          "before": "Leaders were named. Ordinary participants mostly were not.",
+          "open": "Unchanged. Naming ordinary participants and communities is editorial work (Bible P1, P2)."
+        },
+        {
+          "does": "Sees a spelling he knows is wrong.",
+          "before": "Nothing admitted that entries might be incomplete.",
+          "now": "The entry says plainly what has not been verified yet."
+        },
+        {
+          "does": "Wants to tell the archive.",
+          "before": "No route at all.",
+          "open": "Still none. A correction form that needs no account (Bible C2, P5) comes once the site is on Netlify."
+        }
+      ]
+    }
+  ]
+}
