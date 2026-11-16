@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How this archive works — Left history archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/status.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h1><a href="index.html" class="home-link">Left history archive</a></h1>
+  <span class="catalog-id">status and how it works</span>
+</div>
+
+<main class="status-page">
+
+  <header class="status-intro">
+    <h2>How this archive works</h2>
+    <p>One page for the maintainer, for new editors and for anyone who wants to check the work: where the content lives, how an edit reaches the site, and how well sourced the entries are today.</p>
+    <nav class="status-nav" aria-label="On this page">
+      <a href="#health">Health</a>
+      <a href="#route">The route</a>
+      <a href="#editing">Editing steps</a>
+      <a href="#public">Is Sanity public?</a>
+      <a href="#worklist">Worklist</a>
+      <a href="#files">Where things live</a>
+    </nav>
+  </header>
+
+  <section id="health">
+    <h3>Health</h3>
+    <p class="section-note">Counted in your browser from the same snapshot the site reads. <span id="sync-line"></span></p>
+    <div class="tiles" id="tiles"></div>
+
+    <h4>Sourcing, all entries</h4>
+    <div class="seg-bar" id="sourcing-bar" role="img"></div>
+    <ul class="seg-legend" id="sourcing-legend"></ul>
+    <p class="section-note">Solid: two or more admissible sources. Thin: one. Banned only: every source is on the banned list (Bible E3, E8). None: no source recorded. The stricter test, that one source must be scholarly or primary, starts when sources get their own records (plan D7).</p>
+
+    <h4>By kind of entry</h4>
+    <div class="table-wrap">
+      <table class="status-table" id="type-table"></table>
+    </div>
+  </section>
+
+  <section id="route">
+    <h3>The route from an edit to the site</h3>
+    <ol class="route" id="route-list"></ol>
+    <p class="section-note">The public site never talks to Sanity. It reads the snapshot only, so pages stay small, the site stays up if Sanity is down, and every content change is kept in git history.</p>
+    <div id="setup"></div>
+  </section>
+
+  <section id="editing">
+    <h3>Changing or adding an entry</h3>
+
+    <h4>A. Open the Studio</h4>
+    <div id="open-studio"></div>
+
+    <h4>B. Edit</h4>
+    <ol class="steps">
+      <li>The left column lists the kinds of entry: <b>Movement</b>, <b>Event</b>, <b>Person</b>, <b>Organization</b>, <b>Text</b>, <b>Place</b>. Click one.</li>
+      <li>The next column lists the entries of that kind. Click one to change it. To add one, click the create button at the top of that column (a pencil or plus icon).</li>
+      <li>Fill in or change the fields. For a link to another entry, go to <b>Relationships</b>, click <b>Add item</b>, type the relationship type (for example <code>led_by</code>) and pick the target entry. For a citation, go to <b>Sources</b>, click <b>Add item</b> and fill in the citation, its type and its URL.</li>
+      <li>Sanity saves as you type. At this point the entry is a <b>draft</b>, and drafts are private.</li>
+      <li>When the entry is ready to be read by anyone, do two things: turn on the <b>Published</b> switch near the bottom of the form, and click the <b>Publish</b> button at the bottom of the screen. The button moves the entry out of draft. The switch tells the sync robot to put it on the site.</li>
+    </ol>
+
+    <h4>C. Send it to the site</h4>
+    <ol class="steps" start="6" id="send-steps"></ol>
+    <p class="section-note">If you stop after step 5, the nightly run at 02:00 India time does the rest. Button labels in the Studio can differ slightly between Sanity versions.</p>
+
+    <h4>Taking an entry off the site</h4>
+    <p>Turn the <b>Published</b> switch off, click <b>Publish</b>, and run the sync. The entry leaves the site. It stays readable through Sanity's API until you also choose <b>Unpublish</b> from the menu beside the Publish button.</p>
+  </section>
+
+  <section id="public">
+    <h3>Is the Sanity data public?</h3>
+    <p><b>Yes.</b> The dataset is public, and on Sanity's free plan it has to be. Private datasets need the paid Growth plan.</p>
+    <ul class="plain-list">
+      <li>Anything you <b>Publish</b> in Sanity can be read through Sanity's API by anyone who knows the project id. The archive's own <b>Published</b> switch keeps an entry off this website. It does not hide it in Sanity.</li>
+      <li><b>Drafts are private.</b> An entry you have typed but not clicked Publish on cannot be read from outside.</li>
+    </ul>
+    <p><b>What is better now:</b> keep it public and free, and treat the Publish button as "the world can read this". Unfinished entries stay drafts.</p>
+    <p><b>When to pay for private:</b> once the dataset holds things that must not be read early, such as machine-suggested text from books, reviewer comments or contributors' personal details. Nothing on this site would change, because it never talks to Sanity.</p>
+    <p class="section-note">Checked on 17/11/2026: three entries were published in Sanity with the switch off (Charu Majumdar, the Floud Commission report, Sunil Sen's <i>Agrarian Struggle in Bengal</i>). Finish them or unpublish them.</p>
+  </section>
+
+  <section id="worklist">
+    <h3>Worklist</h3>
+    <p class="section-note">Every entry that breaks a rule or has an open question. Fix these in the Studio, never in the JSON files.</p>
+    <div class="worklist-controls">
+      <label for="problem-filter">Show</label>
+      <select id="problem-filter"></select>
+      <span id="worklist-count" aria-live="polite"></span>
+    </div>
+    <ul class="worklist" id="worklist-items"></ul>
+  </section>
+
+  <section id="files">
+    <h3>Where things live</h3>
+    <div class="table-wrap">
+      <table class="status-table">
+        <thead><tr><th>Folder or file</th><th>What it holds</th></tr></thead>
+        <tbody>
+          <tr><td><code>studio/</code></td><td>Sanity Studio: the editing screens and the shape of each kind of entry</td></tr>
+          <tr><td><code>site/</code></td><td>This website</td></tr>
+          <tr><td><code>site/data/</code></td><td>The snapshot of published content. Made by the sync robot, never edited by hand</td></tr>
+          <tr><td><code>site/config/blocklist.json</code></td><td>The banned-source list this page counts against</td></tr>
+          <tr><td><code>site/config/project.json</code></td><td>The Studio, GitHub and site addresses this page links to</td></tr>
+          <tr><td><code>tools/</code></td><td>The sync script and the validator</td></tr>
+          <tr><td><code>docs/BRIEF.md</code></td><td>What the archive is and for whom</td></tr>
+          <tr><td><code>docs/BIBLE.md</code></td><td>The numbered rules every entry and screen is checked against</td></tr>
+          <tr><td><code>docs/PLAN.md</code></td><td>The decisions and the staged work, in priority order</td></tr>
+          <tr><td><code>docs/editorial-log.md</code></td><td>Rulings on individual sources and disagreements</td></tr>
+          <tr><td><code>CLAUDE.md</code></td><td>Standing instructions and current progress, read by Claude at the start of each session</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/status.js"></script>
+</body>
+</html>

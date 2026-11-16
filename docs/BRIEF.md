@@ -28,8 +28,10 @@ Phone first (360px wide, weak connection), laptop second. On phones, list and en
 
 ## Stack
 
-- **Content:** Sanity Studio (`protyaym/left-history-backend`), dataset `p90vg6so/production`.
-- **Site:** static frontend (`protyaym/archive-starter`), built from a JSON snapshot via `scripts/sync-from-sanity.js`, hosted on GitHub Pages.
+- **One repository**, `left-history-archive`, merged on 17/11/2026 from `archive-starter`, `left-history-backend` and `left-history-editorial`.
+- **Content:** Sanity Studio (`studio/`), dataset `p90vg6so/production`. Sanity is the only place content is edited.
+- **Site:** static frontend (`site/`), built from a JSON snapshot via `tools/sync-from-sanity.js`, hosted on Netlify.
+- **How the pieces connect:** `docs/HOW-IT-WORKS.md`, and the status page at `site/status.html`.
 
 ## Success looks like
 

@@ -60,6 +60,11 @@ body {
   border-bottom: 2px solid transparent;
 }
 
+.status-link {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
 .view-tab.active {
   color: var(--gold-deep);
   border-bottom-color: var(--gold-deep);

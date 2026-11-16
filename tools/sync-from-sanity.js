@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// Pulls published documents from the Sanity backend (protyaym/left-history-backend)
-// and writes them into data/*.json in the shape the frontend already reads.
+// Pulls published documents from the Sanity dataset (schema in studio/)
+// and writes them into site/data/*.json in the shape the frontend already reads.
 //
-// Run:  node scripts/sync-from-sanity.js            (fetch live)
-//       node scripts/sync-from-sanity.js dump.json  (use a saved GROQ response)
-// Then: node scripts/validate.js
+// Run:  node tools/sync-from-sanity.js            (fetch live)
+//       node tools/sync-from-sanity.js dump.json  (use a saved GROQ response)
+// Then: node tools/validate.js
 //
 // Why a snapshot instead of fetching Sanity from the browser: one small static
 // file per type loads fast on phones, the site keeps working if the Sanity
@@ -19,7 +19,7 @@ const DATASET = "production";
 const QUERY = '*[_type in ["movement","event","person","organization","textContent","text","place"] && !(_id in path("drafts.**"))]';
 const URL = `https://${PROJECT_ID}.apicdn.sanity.io/v2024-01-01/data/query/${DATASET}?query=${encodeURIComponent(QUERY)}`;
 
-const OUT_DIR = path.join(__dirname, "..", "data");
+const OUT_DIR = path.join(__dirname, "..", "site", "data");
 const FILE_FOR_TYPE = {
   movement: "movements.json",
   event: "events.json",
@@ -112,6 +112,12 @@ async function main() {
     fs.writeFileSync(path.join(OUT_DIR, file), JSON.stringify(list, null, 2) + "\n");
     console.log(`${file}: ${list.length}`);
   });
+
+  // Read by site/status.html to show when the snapshot was last refreshed.
+  fs.writeFileSync(
+    path.join(OUT_DIR, "sync.json"),
+    JSON.stringify({ synced_at: new Date().toISOString(), published: published.length, total: docs.length }, null, 2) + "\n"
+  );
 
   console.log(`\n${published.length} published of ${docs.length} documents.`);
   if (dropped.length) {

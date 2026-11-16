@@ -1,3 +1,5 @@
+> **Out of date since 17/11/2026.** This describes the July pilot, when the JSON files were edited by hand. Content is now edited only in Sanity. Read `../docs/HOW-IT-WORKS.md` instead. A rewrite is on the Stage 0 list in `../docs/PLAN.md`.
+
 # Left history archive — starter scaffold
 
 A working pilot: the Tebhaga movement (1946–47) and its East Bengal continuation,

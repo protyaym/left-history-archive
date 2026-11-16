@@ -66,9 +66,9 @@ function openCard(entity) {
 
 function initMap() {
   map = L.map("map").setView([24.5, 88.7], 6);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-    attribution: "&copy; OpenStreetMap, &copy; CARTO",
-    maxZoom: 18,
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19,
   }).addTo(map);
   markerLayer = L.layerGroup().addTo(map);
   window.addEventListener("resize", () => map.invalidateSize());

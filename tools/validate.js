@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Run: node scripts/validate.js
+// Run: node tools/validate.js
 // No dependencies -- plain Node. Exits non-zero (and prints ERRORs) if
 // anything is broken enough that it shouldn't be pushed. WARNINGs are
 // judgment calls (e.g. missing sources) that don't block you, but are
@@ -8,7 +8,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const DATA_DIR = path.join(__dirname, "..", "data");
+const DATA_DIR = path.join(__dirname, "..", "site", "data");
 const FILES = ["movements.json", "events.json", "people.json", "organizations.json", "texts.json", "places.json"];
 
 let errors = [];

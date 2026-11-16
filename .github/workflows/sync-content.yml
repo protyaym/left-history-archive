@@ -1,0 +1,36 @@
+name: Sync content from Sanity
+
+# Pulls published entries from Sanity into site/data/, checks them, and commits
+# the result. Netlify publishes the commit. See docs/HOW-IT-WORKS.md.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 20 * * *" # 02:00 India time
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Pull from Sanity
+        run: node tools/sync-from-sanity.js
+      - name: Validate (an error stops here and leaves the site unchanged)
+        run: node tools/validate.js
+      - name: Commit the snapshot if the content changed
+        run: |
+          if git diff --quiet -- site/data ':!site/data/sync.json'; then
+            echo "No content changes."
+            exit 0
+          fi
+          git config user.name "archive-sync"
+          git config user.email "archive-sync@users.noreply.github.com"
+          git add site/data
+          git commit -m "Sync content from Sanity"
+          git push

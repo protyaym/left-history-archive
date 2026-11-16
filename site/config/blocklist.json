@@ -1,0 +1,17 @@
+{
+  "note": "Sources that may guide research but may never be the basis of a published claim (Bible E3, E8). A source is banned when its citation or URL contains one of the 'match' strings, compared in lower case. Read by site/js/status.js.",
+  "patterns": [
+    {"match": "iassite", "name": "IAS Site", "why": "exam-prep site"},
+    {"match": "ias site", "name": "IAS Site", "why": "exam-prep site"},
+    {"match": "vajiram", "name": "Vajiram & Ravi", "why": "exam-prep site"},
+    {"match": "clearias", "name": "ClearIAS", "why": "exam-prep site"},
+    {"match": "insights ias", "name": "Insights IAS", "why": "exam-prep site"},
+    {"match": "insightsonindia", "name": "Insights IAS", "why": "exam-prep site"},
+    {"match": "testbook", "name": "Testbook", "why": "exam-prep site"},
+    {"match": "upsc", "name": "UPSC study notes", "why": "exam-prep material"},
+    {"match": "polsci.institute", "name": "PolSci Institute", "why": "study-notes site; confirm this ruling in the editorial log"},
+    {"match": "polsci institute", "name": "PolSci Institute", "why": "study-notes site; confirm this ruling in the editorial log"},
+    {"match": "grokipedia", "name": "Grokipedia", "why": "AI encyclopaedia"},
+    {"match": "wikipedia", "name": "Wikipedia", "why": "research lead only, never a sole source"}
+  ]
+}
