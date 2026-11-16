@@ -2,6 +2,8 @@
 
 A public reference on the history of the communist movement in the Indian subcontinent, starting with Bengal.
 
+Live at **https://left-history.netlify.app**.
+
 This repository was merged on 17/11/2026 from three: `archive-starter` (now `site/`), `left-history-backend` (now `studio/`) and `left-history-editorial` (now `docs/`). Their history is kept.
 
 | Folder | What it holds |

@@ -41,7 +41,7 @@ docs/     brief, Bible, plan, how-it-works, editorial log
 netlify.toml                         publishes site/
 ```
 
-Sanity project `p90vg6so`, dataset `production`.
+Sanity project `p90vg6so`, dataset `production`. Public site: https://left-history.netlify.app. Repository: https://github.com/protyaym/left-history-archive.
 
 ## Rules that always hold
 
@@ -81,9 +81,9 @@ Stage 0 of `docs/PLAN.md` (foundations) is in progress.
 - [x] Site rebuilt around the personas (17/11/2026): list-first home with search, new entry page, map on its own page, making-of page. This is part of Stage 3, done early. What it did not reach is listed on `site/making.html` under "What design alone cannot fix".
 - [ ] Install Node LTS on the maintainer's machine. Without it the Studio, sync and validator cannot run locally. The moved scripts in `tools/` and the workflow have not been run since the merge.
 - [ ] Archive (do not delete) the three old repos on GitHub: `archive-starter`, `left-history-backend`, `left-history-editorial`. Their full history is in this repo; checked 17/11/2026 that none had newer commits.
-- [ ] Connect Netlify to the repository (it reads `netlify.toml`).
+- [x] Netlify connected (17/11/2026). Live at https://left-history.netlify.app, redeploys on every push to `main`.
 - [ ] Deploy the Studio (`cd studio && npx sanity deploy`).
-- [ ] Fill in `studio_url` and `site_url` in `site/config/project.json` once they exist (`repo_url` is done).
+- [ ] Fill in `studio_url` in `site/config/project.json` once the Studio is deployed (`repo_url` and `site_url` are done).
 - [ ] Rewrite `site/README.md` (it still describes hand-editing JSON) and add a licence.
 - [ ] Set up a monthly `sanity dataset export` backup.
 
