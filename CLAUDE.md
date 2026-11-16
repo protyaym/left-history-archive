@@ -17,6 +17,7 @@ The maintainer is a designer, not a full-time developer. Explain in plain langua
 | `docs/PLAN.md` | Setup decisions (D1 to D11) and the staged work in priority order |
 | `docs/HOW-IT-WORKS.md` | How an edit in Sanity reaches the public site |
 | `docs/editorial-log.md` | Case-by-case rulings on sources and disagreements |
+| `docs/source-review-2026-11.md` | The November 2026 source review: what replaced each banned source, with pages |
 | `site/config/ux.json` | The four personas and their journey maps. Design changes are argued from these |
 
 When a request conflicts with the Bible or the plan, say so and name the rule (for example "breaks E3") before doing anything.
@@ -87,11 +88,22 @@ Stage 0 of `docs/PLAN.md` (foundations) is in progress.
 - [ ] Rewrite `site/README.md` (it still describes hand-editing JSON) and add a licence.
 - [ ] Set up a monthly `sanity dataset export` backup.
 
-Next after Stage 0: Stage 1, starting with sources as their own document type (plan D7) and the blocklist in the validator.
+Stage 2 (harden the Bengal core) has started early with a source review:
+
+- [x] Source review written (17/11/2026): `tools/source-review/2026-11.json`, report in `docs/source-review-2026-11.md`. 26 entries re-sourced from read sources with page numbers, 11 texts corrected, 8 entries to be held back.
+- [ ] **Not yet applied to Sanity.** Needs the `SANITY_WRITE_TOKEN` repository secret, then the "Apply source review" workflow (dry run first), then the sync workflow. `tools/apply-source-review.js` has never been run: Node is not installed here, and it was checked only by a Python simulation of its logic against the live data.
+
+Also next: Stage 1, starting with sources as their own document type (plan D7) and the blocklist in the validator.
+
+### Source research notes
+
+- Full Bangla texts on the Internet Archive with page-level search: *Tebhaga Andolan* (ed. Dhananjay Ray, 2000; participants' memoirs, printed page = scan page + 2), *Tebhaga Sankhya* (1997), *Rangpurer Adhiyar Bidroha O Tebhaga Andolan* (1969). Use the `_hocr_searchtext.txt.gz` and `_hocr_pageindex.json.gz` files to find the scan page of a passage.
+- The Floud Commission report (1940) is on the Internet Archive in full (`india.history.resource.109350`).
+- Not yet read and worth getting: Sunil Sen, *Agrarian Struggle in Bengal 1946-47* (1972); Peter Custers, *Women in the Tebhaga Uprising* (1987); Asok Majumdar on Tebhaga (title and year to verify).
 
 ## Known problems
 
-- 35 of 82 entries fail the sourcing rules: 27 rest only on banned sources, 8 have none. Only 4 have two or more admissible sources. The status page lists them.
+- 35 of 82 entries fail the sourcing rules: 27 rest only on banned sources, 8 have none. Only 4 have two or more admissible sources. The status page lists them. Once the source review is applied: 0 banned-only, 1 with no source (`org_cpi_undivided`, waiting on the founding-date ruling), 16 solid, 57 thin, 8 held back.
 - Three entries are published in Sanity with the `published` switch off, so they are publicly readable through the API: `pe_majumdar`, `tx_floud_report`, `tx_sen_agrarian_struggle`.
 - Entries created in the Studio get a random id instead of a prefixed one (`mv_`, `ev_`, `pe_`, `org_`, `tx_`, `pl_`). Two exist.
 - The Studio has two names for texts: the document type is `textContent`, but relationships point at `text`. The sync accepts both.

@@ -121,7 +121,7 @@ Progress is tracked in `CLAUDE.md` at the repo root, under "Where the work stand
 ### Stage 2: harden the Bengal core (the real work; two to three months)
 
 14. Freeze new entries. Every one of the 82 either reaches `reviewed` or drops to `draft`.
-15. Start with Tebhaga and Nachole. Replace every exam-prep and Wikipedia citation with the books: Sunil Sen, Abani Lahiri, Adrienne Cooper, Peter Custers. Verify titles and editions before citing. Sen and Lahiri are already cited once each in the data.
+15. Start with Tebhaga and Nachole. Replace every exam-prep and Wikipedia citation with the books: Sunil Sen, Abani Lahiri, Adrienne Cooper, Peter Custers. Verify titles and editions before citing. Sen and Lahiri are already cited once each in the data. **First pass done 17/11/2026** (`docs/source-review-2026-11.md`), from the Floud report and two Bangla collections; Sen, Cooper and Custers are still unread.
 16. Clear the 31 editor notes, or convert each to a public "not yet verified" note (Bible E5).
 17. Rewrite the 18 `contested` flags as claims with named versions. Fix the Nachole hedging (Bible S5).
 18. Decide the pending founding-date entry in `editorial-log.md`.

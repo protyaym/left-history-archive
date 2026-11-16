@@ -1,0 +1,40 @@
+name: Apply source review
+
+# Writes a source review (tools/source-review/*.json) into Sanity.
+# Leave "apply" unticked first: that is a dry run that prints every change and
+# writes nothing. See docs/source-review-2026-11.md.
+#
+# Needs the repository secret SANITY_WRITE_TOKEN (a Sanity API token with
+# Editor rights) only when "apply" is ticked.
+
+on:
+  workflow_dispatch:
+    inputs:
+      review:
+        description: "Review file"
+        default: "tools/source-review/2026-11.json"
+        required: true
+      apply:
+        description: "Write the changes to Sanity (untick for a dry run)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Dry run
+        if: ${{ !inputs.apply }}
+        run: node tools/apply-source-review.js "${{ inputs.review }}"
+      - name: Apply
+        if: ${{ inputs.apply }}
+        env:
+          SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+        run: node tools/apply-source-review.js "${{ inputs.review }}" --apply
