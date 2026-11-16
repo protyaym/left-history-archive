@@ -1,0 +1,2 @@
+# left-history-editorial
+Editorial
